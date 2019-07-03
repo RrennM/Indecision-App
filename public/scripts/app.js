@@ -42,38 +42,50 @@ var app = {
     )
 );
 
-// Using a function to check if
-function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            'p',
-            null,
-            'Location: ',
-            location
-        );
-    }
-}
-var user = {
-    name: 'Tyson',
-    age: 33,
-    location: 'Portland'
-    // Ternary operation and logical && operator
-};var templateTwo = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        user.name ? user.name : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        'p',
-        null,
-        'Age: ',
-        user.age
-    ),
-    getLocation(user.location)
-);
+var count = 0;
+var subtractOne = function subtractOne() {
+    count--;
+    renderCounterApp();
+};
+var reset = function reset() {
+    count = 0;
+    renderCounterApp();
+};
+var addOne = function addOne() {
+    count++;
+    renderCounterApp();
+};
+
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(template, appRoot);
+var renderCounterApp = function renderCounterApp() {
+    var templateTwo = React.createElement(
+        'div',
+        null,
+        React.createElement(
+            'h1',
+            null,
+            'Count: ',
+            count
+        ),
+        React.createElement(
+            'button',
+            { onClick: subtractOne },
+            '-1'
+        ),
+        React.createElement(
+            'button',
+            { onClick: reset },
+            'reset'
+        ),
+        React.createElement(
+            'button',
+            { onClick: addOne },
+            '+1'
+        )
+    );
+
+    ReactDOM.render(templateTwo, appRoot);
+};
+
+renderCounterApp();
