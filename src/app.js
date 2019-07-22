@@ -6,6 +6,10 @@ const app = {
     options: ['One', 'Two']
 }
 
+const onFormSubmit = (e) => {
+    e.preventDefault();
+};
+
 // JSX - JavaScript XML
 const template = (
 <div>
@@ -16,7 +20,7 @@ const template = (
     <li>Item One</li>
     <li>Item Two</li>
     </ol>
-    <form>
+    <form onSubmit={onFormSubmit}>
         <input type="text" name="option"/>
         <button>Add Option</button>
     </form>

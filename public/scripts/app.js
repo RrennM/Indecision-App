@@ -6,9 +6,14 @@ var app = {
     title: 'Indecision App',
     subtitle: 'Best. App. Ever!',
     options: ['One', 'Two']
+};
 
-    // JSX - JavaScript XML
-};var template = React.createElement(
+var onFormSubmit = function onFormSubmit(e) {
+    e.preventDefault();
+};
+
+// JSX - JavaScript XML
+var template = React.createElement(
     'div',
     null,
     React.createElement(
@@ -39,53 +44,19 @@ var app = {
             null,
             'Item Two'
         )
+    ),
+    React.createElement(
+        'form',
+        { onSubmit: onFormSubmit },
+        React.createElement('input', { type: 'text', name: 'option' }),
+        React.createElement(
+            'button',
+            null,
+            'Add Option'
+        )
     )
 );
 
-var count = 0;
-var subtractOne = function subtractOne() {
-    count--;
-    renderCounterApp();
-};
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
-};
-var addOne = function addOne() {
-    count++;
-    renderCounterApp();
-};
-
 var appRoot = document.getElementById('app');
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'h1',
-            null,
-            'Count: ',
-            count
-        ),
-        React.createElement(
-            'button',
-            { onClick: subtractOne },
-            '-1'
-        ),
-        React.createElement(
-            'button',
-            { onClick: reset },
-            'reset'
-        ),
-        React.createElement(
-            'button',
-            { onClick: addOne },
-            '+1'
-        )
-    );
-
-    ReactDOM.render(templateTwo, appRoot);
-};
-
-renderCounterApp();
+ReactDOM.render(template, appRoot);
